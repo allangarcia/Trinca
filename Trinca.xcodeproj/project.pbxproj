@@ -13,6 +13,7 @@
 		9DA2E55C24DFFF3E00BA3203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DA2E55B24DFFF3E00BA3203 /* Assets.xcassets */; };
 		9DA2E55F24DFFF3E00BA3203 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DA2E55E24DFFF3E00BA3203 /* Preview Assets.xcassets */; };
 		9DA2E56224DFFF3F00BA3203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DA2E56024DFFF3F00BA3203 /* LaunchScreen.storyboard */; };
+		9DA2E56A24E0002500BA3203 /* TrincaBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA2E56924E0002500BA3203 /* TrincaBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9DA2E55E24DFFF3E00BA3203 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9DA2E56124DFFF3F00BA3203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9DA2E56324DFFF3F00BA3203 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DA2E56924E0002500BA3203 /* TrincaBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrincaBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				9DA2E55524DFFF3900BA3203 /* AppDelegate.swift */,
 				9DA2E55724DFFF3900BA3203 /* SceneDelegate.swift */,
 				9DA2E55924DFFF3900BA3203 /* ContentView.swift */,
+				9DA2E56924E0002500BA3203 /* TrincaBrain.swift */,
 				9DA2E55B24DFFF3E00BA3203 /* Assets.xcassets */,
 				9DA2E56024DFFF3F00BA3203 /* LaunchScreen.storyboard */,
 				9DA2E56324DFFF3F00BA3203 /* Info.plist */,
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DA2E55624DFFF3900BA3203 /* AppDelegate.swift in Sources */,
+				9DA2E56A24E0002500BA3203 /* TrincaBrain.swift in Sources */,
 				9DA2E55824DFFF3900BA3203 /* SceneDelegate.swift in Sources */,
 				9DA2E55A24DFFF3900BA3203 /* ContentView.swift in Sources */,
 			);
