@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D1207ED24E1639C007ABB5D /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1207EC24E1639C007ABB5D /* GridLayout.swift */; };
+		9D1207EF24E163AD007ABB5D /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1207EE24E163AD007ABB5D /* Grid.swift */; };
+		9D1207F124E163D0007ABB5D /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1207F024E163D0007ABB5D /* Cardify.swift */; };
+		9D1207F324E16463007ABB5D /* TrincaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1207F224E16463007ABB5D /* TrincaViewModel.swift */; };
+		9D1207F524E16916007ABB5D /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1207F424E16916007ABB5D /* Array+Identifiable.swift */; };
 		9DA2E55624DFFF3900BA3203 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA2E55524DFFF3900BA3203 /* AppDelegate.swift */; };
 		9DA2E55824DFFF3900BA3203 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA2E55724DFFF3900BA3203 /* SceneDelegate.swift */; };
-		9DA2E55A24DFFF3900BA3203 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA2E55924DFFF3900BA3203 /* ContentView.swift */; };
+		9DA2E55A24DFFF3900BA3203 /* TrincaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA2E55924DFFF3900BA3203 /* TrincaView.swift */; };
 		9DA2E55C24DFFF3E00BA3203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DA2E55B24DFFF3E00BA3203 /* Assets.xcassets */; };
 		9DA2E55F24DFFF3E00BA3203 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DA2E55E24DFFF3E00BA3203 /* Preview Assets.xcassets */; };
 		9DA2E56224DFFF3F00BA3203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DA2E56024DFFF3F00BA3203 /* LaunchScreen.storyboard */; };
@@ -17,10 +22,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D1207EC24E1639C007ABB5D /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		9D1207EE24E163AD007ABB5D /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		9D1207F024E163D0007ABB5D /* Cardify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
+		9D1207F224E16463007ABB5D /* TrincaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrincaViewModel.swift; sourceTree = "<group>"; };
+		9D1207F424E16916007ABB5D /* Array+Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
 		9DA2E55224DFFF3900BA3203 /* Trinca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trinca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DA2E55524DFFF3900BA3203 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DA2E55724DFFF3900BA3203 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9DA2E55924DFFF3900BA3203 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9DA2E55924DFFF3900BA3203 /* TrincaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrincaView.swift; sourceTree = "<group>"; };
 		9DA2E55B24DFFF3E00BA3203 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DA2E55E24DFFF3E00BA3203 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9DA2E56124DFFF3F00BA3203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,7 +70,12 @@
 			children = (
 				9DA2E55524DFFF3900BA3203 /* AppDelegate.swift */,
 				9DA2E55724DFFF3900BA3203 /* SceneDelegate.swift */,
-				9DA2E55924DFFF3900BA3203 /* ContentView.swift */,
+				9DA2E55924DFFF3900BA3203 /* TrincaView.swift */,
+				9D1207F424E16916007ABB5D /* Array+Identifiable.swift */,
+				9D1207F224E16463007ABB5D /* TrincaViewModel.swift */,
+				9D1207F024E163D0007ABB5D /* Cardify.swift */,
+				9D1207EE24E163AD007ABB5D /* Grid.swift */,
+				9D1207EC24E1639C007ABB5D /* GridLayout.swift */,
 				9DA2E56924E0002500BA3203 /* TrincaBrain.swift */,
 				9DA2E55B24DFFF3E00BA3203 /* Assets.xcassets */,
 				9DA2E56024DFFF3F00BA3203 /* LaunchScreen.storyboard */,
@@ -150,9 +165,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DA2E55624DFFF3900BA3203 /* AppDelegate.swift in Sources */,
+				9D1207F124E163D0007ABB5D /* Cardify.swift in Sources */,
 				9DA2E56A24E0002500BA3203 /* TrincaBrain.swift in Sources */,
+				9D1207ED24E1639C007ABB5D /* GridLayout.swift in Sources */,
 				9DA2E55824DFFF3900BA3203 /* SceneDelegate.swift in Sources */,
-				9DA2E55A24DFFF3900BA3203 /* ContentView.swift in Sources */,
+				9D1207F524E16916007ABB5D /* Array+Identifiable.swift in Sources */,
+				9D1207F324E16463007ABB5D /* TrincaViewModel.swift in Sources */,
+				9DA2E55A24DFFF3900BA3203 /* TrincaView.swift in Sources */,
+				9D1207EF24E163AD007ABB5D /* Grid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
