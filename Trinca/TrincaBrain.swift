@@ -16,7 +16,8 @@ import Foundation
 
 struct TrincaBrain {
     
-    struct Card {
+    struct Card: Identifiable {
+        var id: Int
         var number: Number
         var shape: Shape
         var color: Color
@@ -46,12 +47,14 @@ struct TrincaBrain {
     static func makeDeck() -> Array<Card> {
         
         var result = Array<Card>()
+        var id = 0
         
         for number in Card.Number.allCases {
             for shape in Card.Shape.allCases {
                 for color in Card.Color.allCases {
                     for texture in Card.Texture.allCases {
-                        result.append(Card(number: number, shape: shape, color: color, texture: texture))
+                        result.append(Card(id: id, number: number, shape: shape, color: color, texture: texture))
+                        id += 1
                     }
                 }
             }
