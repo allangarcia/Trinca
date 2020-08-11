@@ -14,13 +14,62 @@ struct TrincaView: View {
     
     var body: some View {
         Grid(trinca.tableCards) { card in
-            Text("Carta: \(card.id)")
+            SetCardView(card: card)
         }
+    .padding()
     }
     
 }
 
-
+struct SetCardView: View {
+    
+    var card: TrincaBrain.Card
+    
+    var number: Int {
+        switch card.number {
+        case .one:
+            return 1
+        case .two:
+            return 2
+        case .three:
+            return 3
+        }
+    }
+    
+    var color: Color {
+        switch card.color {
+        case .red:
+            return Color.red
+        case .green:
+            return Color.green
+        case .purple:
+            return Color.purple
+        }
+    }
+    
+    var body: some View {
+        Group {
+            VStack {
+                ForEach(0..<number) { _ in
+                    if self.card.shape == TrincaBrain.Card.Shape.diamond {
+                        Rectangle()
+                    } else if self.card.shape == TrincaBrain.Card.Shape.oval {
+                        Capsule()
+                    } else if self.card.shape == TrincaBrain.Card.Shape.squiggle {
+                        Ellipse()
+                    } else {
+                        Text("Carta: \(self.card.id)")
+                    }
+                }
+            }
+            .padding()
+        }
+        .foregroundColor(color)
+        .cardify(isFaceUp: true)
+        .padding(5)
+    }
+    
+}
 
 
 

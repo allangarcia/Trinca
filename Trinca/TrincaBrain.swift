@@ -60,7 +60,7 @@ struct TrincaBrain {
             }
         }
         
-        return result
+        return result.shuffled()
         
     }
     
