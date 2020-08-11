@@ -50,17 +50,46 @@ struct SetCardView: View {
     var body: some View {
         Group {
             VStack {
+                Spacer()
                 ForEach(0..<number) { _ in
                     if self.card.shape == TrincaBrain.Card.Shape.diamond {
-                        Rectangle()
+                        if self.card.texture == TrincaBrain.Card.Texture.open {
+                            Rectangle().stroke()
+                        } else if self.card.texture == TrincaBrain.Card.Texture.solid {
+                            Rectangle().fill()
+                        } else if self.card.texture == TrincaBrain.Card.Texture.stripped {
+                            Rectangle()
+                                .overlay(
+                                    Stripes(width: 2, spacing: 5, degrees: 30, foreground: Color.white, background: Color.clear)
+                            )
+                        }
                     } else if self.card.shape == TrincaBrain.Card.Shape.oval {
-                        Capsule()
+                        if self.card.texture == TrincaBrain.Card.Texture.open {
+                            Capsule().stroke()
+                        } else if self.card.texture == TrincaBrain.Card.Texture.solid {
+                            Capsule().fill()
+                        } else if self.card.texture == TrincaBrain.Card.Texture.stripped {
+                            Capsule()
+                                .overlay(
+                                    Stripes(width: 2, spacing: 5, degrees: 30, foreground: Color.white, background: Color.clear)
+                            )
+                        }
                     } else if self.card.shape == TrincaBrain.Card.Shape.squiggle {
-                        Ellipse()
+                        if self.card.texture == TrincaBrain.Card.Texture.open {
+                            Ellipse().stroke()
+                        } else if self.card.texture == TrincaBrain.Card.Texture.solid {
+                            Ellipse().fill()
+                        } else if self.card.texture == TrincaBrain.Card.Texture.stripped {
+                            Ellipse()
+                                .overlay(
+                                    Stripes(width: 2, spacing: 5, degrees: 30, foreground: Color.white, background: Color.clear)
+                            )
+                        }
                     } else {
                         Text("Carta: \(self.card.id)")
                     }
                 }
+                Spacer()
             }
             .padding()
         }
