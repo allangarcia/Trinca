@@ -14,14 +14,14 @@ struct TrincaView: View {
     
     var body: some View {
         Grid(trinca.tableCards) { card in
-            SetCardView(card: card)
+            CardView(card: card)
         }
     .padding()
     }
     
 }
 
-struct SetCardView: View {
+struct CardView: View {
     
     var card: TrincaBrain.Card
     
@@ -52,42 +52,11 @@ struct SetCardView: View {
             VStack {
                 Spacer()
                 ForEach(0..<number) { _ in
-                    if self.card.shape == TrincaBrain.Card.Shape.diamond {
-                        if self.card.texture == TrincaBrain.Card.Texture.open {
-                            Rectangle().stroke()
-                        } else if self.card.texture == TrincaBrain.Card.Texture.solid {
-                            Rectangle().fill()
-                        } else if self.card.texture == TrincaBrain.Card.Texture.stripped {
-                            Rectangle()
-                                .overlay(
-                                    Stripes(width: 2, spacing: 5, degrees: 30, foreground: Color.white, background: Color.clear)
-                            )
-                        }
-                    } else if self.card.shape == TrincaBrain.Card.Shape.oval {
-                        if self.card.texture == TrincaBrain.Card.Texture.open {
-                            Capsule().stroke()
-                        } else if self.card.texture == TrincaBrain.Card.Texture.solid {
-                            Capsule().fill()
-                        } else if self.card.texture == TrincaBrain.Card.Texture.stripped {
-                            Capsule()
-                                .overlay(
-                                    Stripes(width: 2, spacing: 5, degrees: 30, foreground: Color.white, background: Color.clear)
-                            )
-                        }
-                    } else if self.card.shape == TrincaBrain.Card.Shape.squiggle {
-                        if self.card.texture == TrincaBrain.Card.Texture.open {
-                            Ellipse().stroke()
-                        } else if self.card.texture == TrincaBrain.Card.Texture.solid {
-                            Ellipse().fill()
-                        } else if self.card.texture == TrincaBrain.Card.Texture.stripped {
-                            Ellipse()
-                                .overlay(
-                                    Stripes(width: 2, spacing: 5, degrees: 30, foreground: Color.white, background: Color.clear)
-                            )
-                        }
-                    } else {
-                        Text("Carta: \(self.card.id)")
-                    }
+                    ShapeView(
+                        shape: self.card.shape,
+                        texture: self.card.texture
+                    )
+                    .aspectRatio(2/1, contentMode: .fit)
                 }
                 Spacer()
             }
@@ -100,8 +69,26 @@ struct SetCardView: View {
     
 }
 
-
-
+struct ShapeView: View {
+    
+    var shape: TrincaBrain.Card.Shape
+    var texture: TrincaBrain.Card.Texture
+    
+    var body: some View {
+        Group {
+            if shape == .diamond {
+                DiamondShape()
+                    .cardTexture(texture: texture)
+            } else if shape == .oval {
+                OvalShape()
+                    .cardTexture(texture: texture)
+            } else if shape == .squiggle {
+                SquiggleShape()
+                    .cardTexture(texture: texture)
+            }
+        }
+    }
+}
 
 
 

@@ -19,27 +19,44 @@ struct Stripes: View {
     let background: Color
     
     var body: some View {
-        GeometryReader { geometry in
-            self.body(for: geometry.size)
-        }
-        .clipped()
-        .drawingGroup()
+        StripedPattern(width: width, spacing: spacing, degrees: degrees)
+            .fill(foreground)
+            .background(background)
+            .clipped()
+            .drawingGroup()
     }
     
-    private func body(for size: CGSize) -> some View {
-        let longSide = max(size.width, size.height)
+}
+
+struct StripedPattern: Shape {
+    
+    let width: CGFloat
+    let spacing: CGFloat
+    let degrees: Double
+    
+    func path(in rect: CGRect) -> Path {
+        let longSide = max(rect.width, rect.height)
         let itemWidth = width + spacing
-        let items = Int(2 * longSide / itemWidth)
-        return HStack(spacing: spacing) {
-            ForEach(0..<items) { index in
-                self.foreground
-                    .frame(width: self.width, height: 2 * longSide)
-            }
+        let numberOfItens = Int(longSide / itemWidth)
+        let angle = Angle.degrees(degrees)
+        
+        var p = Path()
+        
+        for i in 0...numberOfItens {
+            p.addRect(CGRect(x: spacing / 2 + CGFloat(i) * itemWidth,
+                             y: 0,
+                             width: width,
+                             height: longSide))
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .rotationEffect(Angle(degrees: degrees), anchor: .center)
-        .offset(x: -longSide / 2, y: -longSide / 2)
-        .background(background)
+        let rotate = CGAffineTransform(rotationAngle: CGFloat(angle.radians))
+        p = p.applying(rotate)
+        
+        let bounds = p.boundingRect
+        let offsetX = (rect.minX - bounds.minX) - (bounds.width - rect.width) / 2
+        let offsetY = (rect.minY - bounds.minY) - (bounds.height - rect.height) / 2
+        p = p.offsetBy(dx: offsetX, dy: offsetY)
+        
+        return p
     }
     
 }

@@ -12,6 +12,8 @@
 		9D1207F124E163D0007ABB5D /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1207F024E163D0007ABB5D /* Cardify.swift */; };
 		9D1207F324E16463007ABB5D /* TrincaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1207F224E16463007ABB5D /* TrincaViewModel.swift */; };
 		9D1207F524E16916007ABB5D /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1207F424E16916007ABB5D /* Array+Identifiable.swift */; };
+		9D807E5A24FE598100CE261B /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D807E5924FE598100CE261B /* Shapes.swift */; };
+		9D807E5C24FE601400CE261B /* Shape+Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D807E5B24FE601400CE261B /* Shape+Texture.swift */; };
 		9DA2E55624DFFF3900BA3203 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA2E55524DFFF3900BA3203 /* AppDelegate.swift */; };
 		9DA2E55824DFFF3900BA3203 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA2E55724DFFF3900BA3203 /* SceneDelegate.swift */; };
 		9DA2E55A24DFFF3900BA3203 /* TrincaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA2E55924DFFF3900BA3203 /* TrincaView.swift */; };
@@ -28,6 +30,8 @@
 		9D1207F024E163D0007ABB5D /* Cardify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		9D1207F224E16463007ABB5D /* TrincaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrincaViewModel.swift; sourceTree = "<group>"; };
 		9D1207F424E16916007ABB5D /* Array+Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
+		9D807E5924FE598100CE261B /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		9D807E5B24FE601400CE261B /* Shape+Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape+Texture.swift"; sourceTree = "<group>"; };
 		9DA2E55224DFFF3900BA3203 /* Trinca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trinca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DA2E55524DFFF3900BA3203 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DA2E55724DFFF3900BA3203 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 				9DA2E55524DFFF3900BA3203 /* AppDelegate.swift */,
 				9DA2E55724DFFF3900BA3203 /* SceneDelegate.swift */,
 				9DA2E55924DFFF3900BA3203 /* TrincaView.swift */,
+				9D807E5B24FE601400CE261B /* Shape+Texture.swift */,
+				9D807E5924FE598100CE261B /* Shapes.swift */,
 				9DCB1BF924E31610006F4626 /* Stripes.swift */,
 				9D1207F424E16916007ABB5D /* Array+Identifiable.swift */,
 				9D1207F224E16463007ABB5D /* TrincaViewModel.swift */,
@@ -170,11 +176,13 @@
 				9DA2E55624DFFF3900BA3203 /* AppDelegate.swift in Sources */,
 				9D1207F124E163D0007ABB5D /* Cardify.swift in Sources */,
 				9DA2E56A24E0002500BA3203 /* TrincaBrain.swift in Sources */,
+				9D807E5C24FE601400CE261B /* Shape+Texture.swift in Sources */,
 				9D1207ED24E1639C007ABB5D /* GridLayout.swift in Sources */,
 				9DA2E55824DFFF3900BA3203 /* SceneDelegate.swift in Sources */,
 				9D1207F524E16916007ABB5D /* Array+Identifiable.swift in Sources */,
 				9DCB1BFA24E31610006F4626 /* Stripes.swift in Sources */,
 				9D1207F324E16463007ABB5D /* TrincaViewModel.swift in Sources */,
+				9D807E5A24FE598100CE261B /* Shapes.swift in Sources */,
 				9DA2E55A24DFFF3900BA3203 /* TrincaView.swift in Sources */,
 				9D1207EF24E163AD007ABB5D /* Grid.swift in Sources */,
 			);
