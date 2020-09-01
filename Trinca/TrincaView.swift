@@ -50,7 +50,6 @@ struct CardView: View {
     var body: some View {
         Group {
             VStack {
-                Spacer()
                 ForEach(0..<number) { _ in
                     ShapeView(
                         shape: self.card.shape,
@@ -58,7 +57,6 @@ struct CardView: View {
                     )
                     .aspectRatio(2/1, contentMode: .fit)
                 }
-                Spacer()
             }
             .padding()
         }

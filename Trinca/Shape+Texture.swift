@@ -22,6 +22,7 @@ extension Shape {
                 ZStack {
                     self.overlay(
                         Stripes(width: 5, spacing: 2, degrees: 30, foreground: Color.white, background: Color.clear)
+                        .mask(self)
                     )
                     self.stroke(lineWidth: 2)
                 }
