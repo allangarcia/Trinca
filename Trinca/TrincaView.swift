@@ -10,14 +10,13 @@ import SwiftUI
 
 struct TrincaView: View {
     
-    var trinca: TrincaViewModel
+    @ObservedObject var trinca: TrincaViewModel
     
     var body: some View {
         Grid(trinca.tableCards) { card in
             CardView(card: card)
                 .onTapGesture {
-                    self.trinca.selectCard(card)
-                    print("Card tapped.")
+                    self.trinca.toggleCard(card)
                 }
         }
     .padding()
@@ -52,7 +51,11 @@ struct CardView: View {
     }
     
     var body: some View {
-        Group {
+        ZStack {
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(Color.white)
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .stroke(edgeColor, lineWidth: edgeLineWidth)
             VStack {
                 ForEach(0..<number) { _ in
                     ShapeView(
@@ -63,11 +66,45 @@ struct CardView: View {
                 }
             }
             .padding()
+            .foregroundColor(color)
         }
-        .foregroundColor(color)
-        .cardify(isSelected: card.isSelected)
         .padding(5)
     }
+    
+    // MARK: - CardView helpers
+    
+    private var edgeLineWidth: CGFloat {
+        if let _ = card.isMatched {
+            return 5
+        } else {
+            if card.isSelected {
+                return 5
+            } else {
+                return 3
+            }
+        }
+    }
+    
+    private var edgeColor: Color {
+        if let matched = card.isMatched {
+            if matched {
+                return Color.green
+            } else {
+                return Color.red
+            }
+        } else {
+            if card.isSelected {
+                return Color.blue
+            } else {
+                return Color.black
+            }
+        }
+    }
+
+    
+    // MARK: - CardView constants
+    
+    private let cornerRadius: CGFloat = 10
     
 }
 
@@ -98,8 +135,8 @@ struct ShapeView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let trinca = TrincaViewModel()
-        trinca.selectCard(trinca.tableCards.first!)
-        trinca.selectCard(trinca.tableCards[5])
+        trinca.toggleCard(trinca.tableCards.first!)
+        trinca.toggleCard(trinca.tableCards[5])
         return TrincaView(trinca: trinca)
     }
 }

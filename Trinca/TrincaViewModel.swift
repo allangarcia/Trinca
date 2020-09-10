@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-class TrincaViewModel {
+class TrincaViewModel: ObservableObject {
     
-    var brain: TrincaBrain
+    @Published var brain: TrincaBrain
     
     init() {
         brain = TrincaBrain()
@@ -34,8 +34,8 @@ class TrincaViewModel {
         brain.cards
     }
     
-    func selectCard(_ card: TrincaBrain.Card) {
-        brain.selectCard(card)
+    func toggleCard(_ card: TrincaBrain.Card) {
+        brain.toggleCard(card)
     }
     
     // MARK: - Intenções / Intents
