@@ -51,7 +51,11 @@ struct CardView: View {
     }
     
     var body: some View {
-        Group {
+        ZStack {
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(Color.white)
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .stroke(edgeColor, lineWidth: edgeLineWidth)
             VStack {
                 ForEach(0..<number) { _ in
                     ShapeView(
@@ -62,11 +66,24 @@ struct CardView: View {
                 }
             }
             .padding()
+            .foregroundColor(color)
         }
-        .foregroundColor(color)
-        .cardify(isSelected: card.isSelected)
         .padding(5)
     }
+    
+    // MARK: - CardView helpers
+    
+    private var edgeLineWidth: CGFloat {
+        card.isSelected ? 5 : 3
+    }
+    
+    private var edgeColor: Color {
+        card.isSelected ? Color.blue : Color.black
+    }
+    
+    // MARK: - CardView constants
+    
+    private let cornerRadius: CGFloat = 10
     
 }
 
