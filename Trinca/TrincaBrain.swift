@@ -44,9 +44,9 @@ struct TrincaBrain {
         
     }
     
-    mutating func selectCard(_ card: Card) {
+    mutating func toggleCard(_ card: Card) {
         if let index = cards.firstIndex(matching: card) {
-            cards[index].isSelected = true
+            cards[index].isSelected.toggle()
         }
         if selectedCards.count == 3 {
             matchSelectedCards()

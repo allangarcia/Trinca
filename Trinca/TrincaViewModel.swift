@@ -34,8 +34,8 @@ class TrincaViewModel: ObservableObject {
         brain.cards
     }
     
-    func selectCard(_ card: TrincaBrain.Card) {
-        brain.selectCard(card)
+    func toggleCard(_ card: TrincaBrain.Card) {
+        brain.toggleCard(card)
     }
     
     // MARK: - Intenções / Intents

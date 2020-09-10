@@ -16,7 +16,7 @@ struct TrincaView: View {
         Grid(trinca.tableCards) { card in
             CardView(card: card)
                 .onTapGesture {
-                    self.trinca.selectCard(card)
+                    self.trinca.toggleCard(card)
                 }
         }
     .padding()
@@ -97,8 +97,8 @@ struct ShapeView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let trinca = TrincaViewModel()
-        trinca.selectCard(trinca.tableCards.first!)
-        trinca.selectCard(trinca.tableCards[5])
+        trinca.toggleCard(trinca.tableCards.first!)
+        trinca.toggleCard(trinca.tableCards[5])
         return TrincaView(trinca: trinca)
     }
 }
