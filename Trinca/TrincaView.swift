@@ -10,14 +10,13 @@ import SwiftUI
 
 struct TrincaView: View {
     
-    var trinca: TrincaViewModel
+    @ObservedObject var trinca: TrincaViewModel
     
     var body: some View {
         Grid(trinca.tableCards) { card in
             CardView(card: card)
                 .onTapGesture {
                     self.trinca.selectCard(card)
-                    print("Card tapped.")
                 }
         }
     .padding()
