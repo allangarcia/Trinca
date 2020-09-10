@@ -24,7 +24,7 @@ struct TrincaBrain {
         var texture: Texture
         
         var isSelected: Bool = false
-        var isMatched: Bool = false
+        var isMatched: Bool?
         
         enum Number: CaseIterable {
             case one, two, three
@@ -55,12 +55,73 @@ struct TrincaBrain {
     
     var selectedCards: Array<Card> {
         cards.filter { card in
-            card.isSelected && !card.isMatched
+            card.isSelected
         }
     }
     
-    func matchSelectedCards() {
+    private mutating func matchSelectedCards() {
+        /*
+         Para cada uma das caracteristicas (numero, forma, cor, e textura)
+         Testar se a caracteristica das tres cartas são todas iguais ou todas diferentes
+         */
         print("Matching cards...")
+        
+        var matched = false
+        
+        if selectedCards.count == 3 {
+            let card1 = selectedCards[0]
+            let card2 = selectedCards[1]
+            let card3 = selectedCards[2]
+            
+            // tentar um match com numero
+            if card1.number == card2.number && card2.number == card3.number {
+                matched = true
+            }
+            if card1.number != card2.number && card2.number != card3.number && card3.number != card1.number {
+                matched = true
+            }
+            
+            // tentar um match com forma
+            if card1.shape == card2.shape && card2.shape == card3.shape {
+                matched = true
+            }
+            if card1.shape != card2.shape && card2.shape != card3.shape && card3.shape != card1.shape {
+                matched = true
+            }
+            
+            // tentar um match com cor
+            if card1.color == card2.color && card2.color == card3.color {
+                matched = true
+            }
+            if card1.color != card2.color && card2.color != card3.color && card3.color != card1.color {
+                matched = true
+            }
+            
+            // tentar um match com textura
+            if card1.texture == card2.texture && card2.texture == card3.texture {
+                matched = true
+            }
+            if card1.texture != card2.texture && card2.texture != card3.texture && card3.texture != card1.texture {
+                matched = true
+            }
+            
+            // Mudando o estado da carta matched ou nao-matched
+            
+            if let index = cards.firstIndex(matching: card1) {
+                cards[index].isMatched = matched
+                cards[index].isSelected = false
+            }
+            if let index = cards.firstIndex(matching: card2) {
+                cards[index].isMatched = matched
+                cards[index].isSelected = false
+            }
+            if let index = cards.firstIndex(matching: card3) {
+                cards[index].isMatched = matched
+                cards[index].isSelected = false
+            }
+            
+        }
+        
     }
     
     private(set) var cards: Array<Card> = TrincaBrain.makeDeck()
