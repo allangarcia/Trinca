@@ -45,11 +45,34 @@ struct TrincaBrain {
     }
     
     mutating func toggleCard(_ card: Card) {
+        // Limpa todas as cartas que não sao match
+        for misMatchedCard in misMatchedCards {
+            if let index = cards.firstIndex(matching: misMatchedCard) {
+                cards[index].isMatched = nil
+            }
+        }
+        // Ignora quando a carta já foi matched
+        if let matched = card.isMatched {
+            if matched {
+                return
+            }
+        }
+        // Seleciona a carta
         if let index = cards.firstIndex(matching: card) {
             cards[index].isSelected.toggle()
         }
+        // Se houver 3 cartas tenta fazer match
         if selectedCards.count == 3 {
             matchSelectedCards()
+        }
+    }
+    
+    var misMatchedCards: Array<Card> {
+        cards.filter { card in
+            guard let isMatchedCard = card.isMatched else {
+                return false
+            }
+            return !isMatchedCard
         }
     }
     
@@ -73,35 +96,44 @@ struct TrincaBrain {
             let card2 = selectedCards[1]
             let card3 = selectedCards[2]
             
+            var matchedNumber = false
+            var matchedShape = false
+            var matchedColor = false
+            var matchedTexture = false
+            
             // tentar um match com numero
             if card1.number == card2.number && card2.number == card3.number {
-                matched = true
+                matchedNumber = true
             }
             if card1.number != card2.number && card2.number != card3.number && card3.number != card1.number {
-                matched = true
+                matchedNumber = true
             }
             
             // tentar um match com forma
             if card1.shape == card2.shape && card2.shape == card3.shape {
-                matched = true
+                matchedShape = true
             }
             if card1.shape != card2.shape && card2.shape != card3.shape && card3.shape != card1.shape {
-                matched = true
+                matchedShape = true
             }
             
             // tentar um match com cor
             if card1.color == card2.color && card2.color == card3.color {
-                matched = true
+                matchedColor = true
             }
             if card1.color != card2.color && card2.color != card3.color && card3.color != card1.color {
-                matched = true
+                matchedColor = true
             }
             
             // tentar um match com textura
             if card1.texture == card2.texture && card2.texture == card3.texture {
-                matched = true
+                matchedTexture = true
             }
             if card1.texture != card2.texture && card2.texture != card3.texture && card3.texture != card1.texture {
+                matchedTexture = true
+            }
+            
+            if matchedNumber && matchedShape && matchedColor && matchedTexture {
                 matched = true
             }
             

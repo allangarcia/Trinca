@@ -74,11 +74,31 @@ struct CardView: View {
     // MARK: - CardView helpers
     
     private var edgeLineWidth: CGFloat {
-        card.isSelected ? 5 : 3
+        if let _ = card.isMatched {
+            return 5
+        } else {
+            if card.isSelected {
+                return 5
+            } else {
+                return 3
+            }
+        }
     }
     
     private var edgeColor: Color {
-        card.isSelected ? Color.blue : Color.black
+        if let matched = card.isMatched {
+            if matched {
+                return Color.green
+            } else {
+                return Color.red
+            }
+        } else {
+            if card.isSelected {
+                return Color.blue
+            } else {
+                return Color.black
+            }
+        }
     }
     
     // MARK: - CardView constants
