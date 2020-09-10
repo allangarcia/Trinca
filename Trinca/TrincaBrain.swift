@@ -23,6 +23,9 @@ struct TrincaBrain {
         var color: Color
         var texture: Texture
         
+        var isSelected: Bool = false
+        var isMatched: Bool = false
+        
         enum Number: CaseIterable {
             case one, two, three
         }
@@ -40,9 +43,27 @@ struct TrincaBrain {
         }
         
     }
-
     
-    var cards: Array<Card> = TrincaBrain.makeDeck()
+    mutating func selectCard(_ card: Card) {
+        if let index = cards.firstIndex(matching: card) {
+            cards[index].isSelected = true
+        }
+        if selectedCards.count == 3 {
+            matchSelectedCards()
+        }
+    }
+    
+    var selectedCards: Array<Card> {
+        cards.filter { card in
+            card.isSelected && !card.isMatched
+        }
+    }
+    
+    func matchSelectedCards() {
+        print("Matching cards...")
+    }
+    
+    private(set) var cards: Array<Card> = TrincaBrain.makeDeck()
     
     static func makeDeck() -> Array<Card> {
         
