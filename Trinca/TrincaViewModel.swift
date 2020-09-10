@@ -34,6 +34,10 @@ class TrincaViewModel {
         brain.cards
     }
     
+    func selectCard(_ card: TrincaBrain.Card) {
+        brain.selectCard(card)
+    }
+    
     // MARK: - Intenções / Intents
     
 }
