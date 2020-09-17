@@ -17,7 +17,6 @@ struct TrincaView: View {
             HStack {
                 DeckView(deckOfCards: trinca.deckCards)
                     .frame(width: 80, height: 120, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                Spacer()
                 VStack {
                     Button(action: { trinca.newGame() }) {
                         Text("NEW GAME")
@@ -25,16 +24,16 @@ struct TrincaView: View {
                             .foregroundColor(.white)
                             .padding()
                             .frame(minWidth: 250)
-                            .background(Color.primary)
+                            .background(Color.green)
                             .cornerRadius(15)
                     }
                     Button(action: { trinca.dealThree() }) {
-                        Text("DEAL THREE")
+                        Text("DEAL THREE MORE CARDS")
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding()
                             .frame(minWidth: 250)
-                            .background(Color.secondary)
+                            .background(Color.orange)
                             .cornerRadius(15)
                     }
                 }
