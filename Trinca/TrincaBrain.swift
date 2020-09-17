@@ -17,7 +17,9 @@ import Foundation
 struct TrincaBrain {
     
     struct Card: Identifiable {
+        
         var id: Int
+        
         var number: Number
         var shape: Shape
         var color: Color
@@ -25,6 +27,7 @@ struct TrincaBrain {
         
         var isSelected: Bool = false
         var isMatched: Bool?
+        
         
         enum Number: CaseIterable {
             case one, two, three
@@ -46,29 +49,35 @@ struct TrincaBrain {
     
     mutating func toggleCard(_ card: Card) {
         // Limpa todas as cartas que não sao match
-        for misMatchedCard in misMatchedCards {
-            if let index = cards.firstIndex(matching: misMatchedCard) {
-                cards[index].isMatched = nil
-            }
-        }
+        cleanMismatchedCards()
+        
         // Ignora quando a carta já foi matched
-        if let matched = card.isMatched {
-            if matched {
-                return
-            }
-        }
+        if let matched = card.isMatched, matched { return }
+        
+        // Subistitui cards the foram feito set por novas do deck
+        replaceMatchedCards()
+        
         // Seleciona a carta
-        if let index = cards.firstIndex(matching: card) {
-            cards[index].isSelected.toggle()
+        if let index = tableCards.firstIndex(matching: card) {
+            tableCards[index].isSelected.toggle()
         }
+        
         // Se houver 3 cartas tenta fazer match
         if selectedCards.count == 3 {
             matchSelectedCards()
         }
     }
     
-    var misMatchedCards: Array<Card> {
-        cards.filter { card in
+    private mutating func cleanMismatchedCards() {
+        for mismatchedCard in mismatchedCards {
+            if let index = tableCards.firstIndex(matching: mismatchedCard) {
+                tableCards[index].isMatched = nil
+            }
+        }
+    }
+    
+    private var mismatchedCards: Array<Card> {
+        tableCards.filter { card in
             guard let isMatchedCard = card.isMatched else {
                 return false
             }
@@ -76,8 +85,30 @@ struct TrincaBrain {
         }
     }
     
+    private mutating func replaceMatchedCards() {
+        for matchedCard in matchedCards {
+            if let i = tableCards.firstIndex(matching: matchedCard) {
+                let card = tableCards[i]
+                tableCards.remove(at: i)
+                discardedCards.append(card)
+                if let newCard = deckCards.popLast() {
+                    tableCards.insert(newCard, at: i)
+                }
+            }
+        }
+    }
+    
+    private var matchedCards: Array<Card> {
+        tableCards.filter { card in
+            guard let isMatchedCard = card.isMatched else {
+                return false
+            }
+            return isMatchedCard
+        }
+    }
+    
     var selectedCards: Array<Card> {
-        cards.filter { card in
+        tableCards.filter { card in
             card.isSelected
         }
     }
@@ -139,26 +170,59 @@ struct TrincaBrain {
             
             // Mudando o estado da carta matched ou nao-matched
             
-            if let index = cards.firstIndex(matching: card1) {
-                cards[index].isMatched = matched
-                cards[index].isSelected = false
+            if let index = tableCards.firstIndex(matching: card1) {
+                tableCards[index].isMatched = matched
+                tableCards[index].isSelected = false
             }
-            if let index = cards.firstIndex(matching: card2) {
-                cards[index].isMatched = matched
-                cards[index].isSelected = false
+            if let index = tableCards.firstIndex(matching: card2) {
+                tableCards[index].isMatched = matched
+                tableCards[index].isSelected = false
             }
-            if let index = cards.firstIndex(matching: card3) {
-                cards[index].isMatched = matched
-                cards[index].isSelected = false
+            if let index = tableCards.firstIndex(matching: card3) {
+                tableCards[index].isMatched = matched
+                tableCards[index].isSelected = false
             }
             
         }
         
     }
     
-    private(set) var cards: Array<Card> = TrincaBrain.makeDeck()
+    private var cards: Array<Card> = TrincaBrain.makeCards()
     
-    static func makeDeck() -> Array<Card> {
+    private(set) var deckCards: Array<Card> = []
+    private(set) var tableCards: Array<Card> = []
+    private(set) var discardedCards: Array<Card> = []
+    
+    mutating func loadDeck() {
+        deckCards = cards.shuffled()
+    }
+    
+    mutating func dealThree() {
+        if matchedCards.count == 3 {
+            replaceMatchedCards()
+        } else {
+            dealCards(count: 3)
+        }
+    }
+    
+    private mutating func dealCards(count: Int) {
+        for _ in 0..<count {
+            if let card = deckCards.popLast() {
+                tableCards.append(card)
+            }
+        }
+    }
+    
+    init() {
+        self.loadDeck()
+        self.initialDeal()
+    }
+    
+    mutating func initialDeal() {
+        dealCards(count: 12)
+    }
+    
+    static func makeCards() -> Array<Card> {
         
         var result = Array<Card>()
         var id = 0
@@ -174,7 +238,7 @@ struct TrincaBrain {
             }
         }
         
-        return result.shuffled()
+        return result
         
     }
     

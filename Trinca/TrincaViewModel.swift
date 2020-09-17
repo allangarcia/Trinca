@@ -23,21 +23,25 @@ class TrincaViewModel: ObservableObject {
     as últimas cartas caso o deck seja menor do que 12 cartas.
     */
     var tableCards: Array<TrincaBrain.Card> {
-        let size = cards.count
-        let maxCards = 12
-        let sliceTableCards = cards[0..<min(maxCards,size)]
-        let tableCards = Array(sliceTableCards)
-        return tableCards
+        brain.tableCards
     }
     
-    var cards: Array<TrincaBrain.Card> {
-        brain.cards
+    var deckCards: Array<TrincaBrain.Card> {
+        brain.deckCards
     }
+    
+    // MARK: - Intenções / Intents
     
     func toggleCard(_ card: TrincaBrain.Card) {
         brain.toggleCard(card)
     }
     
-    // MARK: - Intenções / Intents
+    func dealThree() {
+        brain.dealThree()
+    }
+    
+    func newGame() {
+        brain = TrincaBrain()
+    }
     
 }
