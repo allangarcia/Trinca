@@ -13,16 +13,64 @@ struct TrincaView: View {
     @ObservedObject var trinca: TrincaViewModel
     
     var body: some View {
-        Grid(trinca.tableCards) { card in
-            CardView(card: card)
-                .onTapGesture {
-                    self.trinca.toggleCard(card)
+        VStack {
+            HStack {
+                DeckView(deckOfCards: trinca.deckCards)
+                    .frame(width: 80, height: 120, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                Spacer()
+                VStack {
+                    Button(action: { trinca.newGame() }) {
+                        Text("NEW GAME")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(minWidth: 250)
+                            .background(Color.primary)
+                            .cornerRadius(15)
+                    }
+                    Button(action: { trinca.dealThree() }) {
+                        Text("DEAL THREE")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(minWidth: 250)
+                            .background(Color.secondary)
+                            .cornerRadius(15)
+                    }
                 }
+            }
+            .padding()
+            Grid(trinca.tableCards) { card in
+                CardView(card: card)
+                    .aspectRatio(2/3, contentMode: .fit)
+                    .onTapGesture {
+                        self.trinca.toggleCard(card)
+                    }
+            }
         }
-    .padding()
+        .padding()
     }
     
 }
+
+
+struct DeckView: View {
+    
+    var deckOfCards: Array<TrincaBrain.Card>
+
+    var body: some View {
+        ZStack {
+            ForEach(Array(zip(deckOfCards.indices, deckOfCards)), id: \.0) { indice, card in
+                let offset = CGFloat(-CGFloat(indice)/CGFloat(5))
+                CardView(card: card)
+                    .aspectRatio(2/3, contentMode: .fit)
+                    .offset(x: offset, y: offset)
+            }
+        }
+    }
+    
+}
+
 
 struct CardView: View {
     
