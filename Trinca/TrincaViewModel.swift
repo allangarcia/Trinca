@@ -18,19 +18,19 @@ class TrincaViewModel: ObservableObject {
     
     // MARK: - Acesso ao modelo
     
-    /**
-    Esta função retorna as próximas 12 cartas do desk ou
-    as últimas cartas caso o deck seja menor do que 12 cartas.
-    */
-    var tableCards: Array<TrincaBrain.Card> {
-        brain.tableCards
-    }
-    
     var deckCards: Array<TrincaBrain.Card> {
         brain.deckCards
     }
     
+    var tableCards: Array<TrincaBrain.Card> {
+        brain.tableCards
+    }
+    
     // MARK: - Intenções / Intents
+    
+    func newGame() {
+        brain = TrincaBrain()
+    }
     
     func toggleCard(_ card: TrincaBrain.Card) {
         brain.toggleCard(card)
@@ -38,10 +38,6 @@ class TrincaViewModel: ObservableObject {
     
     func dealThree() {
         brain.dealThree()
-    }
-    
-    func newGame() {
-        brain = TrincaBrain()
     }
     
 }

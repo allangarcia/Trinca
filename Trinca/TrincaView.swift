@@ -16,34 +16,29 @@ struct TrincaView: View {
         VStack {
             HStack {
                 DeckView(deckOfCards: trinca.deckCards)
-                    .frame(width: 80, height: 120, alignment: .center)
+                    .frame(width: 80, height: 120, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 VStack {
-                    Button(
-                        action: { trinca.newGame() },
-                        label: {
-                            Text("NEW GAME")
-                                .font(.headline)
-                                .foregroundColor(Color.white)
-                                .padding()
-                                .frame(width: 250)
-                                .background(Color.green)
-                                .cornerRadius(15)
-                        }
-                    )
-                    Button(
-                        action: { trinca.dealThree() },
-                        label: {
-                            Text("DEAL 3 MORE CARDS")
-                                .font(.headline)
-                                .foregroundColor(Color.white)
-                                .padding()
-                                .frame(width: 250)
-                                .background(Color.orange)
-                                .cornerRadius(15)
-                        }
-                    )
+                    Button(action: { trinca.newGame() }) {
+                        Text("NEW GAME")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(minWidth: 250)
+                            .background(Color.green)
+                            .cornerRadius(15)
+                    }
+                    Button(action: { trinca.dealThree() }) {
+                        Text("DEAL THREE MORE CARDS")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(minWidth: 250)
+                            .background(Color.orange)
+                            .cornerRadius(15)
+                    }
                 }
             }
+            .padding()
             Grid(trinca.tableCards) { card in
                 CardView(card: card)
                     .aspectRatio(2/3, contentMode: .fit)
@@ -51,8 +46,8 @@ struct TrincaView: View {
                         self.trinca.toggleCard(card)
                     }
             }
-            .padding()
         }
+        .padding()
     }
     
 }
@@ -61,18 +56,18 @@ struct TrincaView: View {
 struct DeckView: View {
     
     var deckOfCards: Array<TrincaBrain.Card>
-    
+
     var body: some View {
         ZStack {
             ForEach(Array(zip(deckOfCards.indices, deckOfCards)), id: \.0) { indice, card in
-                let offset = -CGFloat(indice) / CGFloat(5)
+                let offset = CGFloat(-CGFloat(indice)/CGFloat(5))
                 CardView(card: card)
                     .aspectRatio(2/3, contentMode: .fit)
                     .offset(x: offset, y: offset)
             }
-            
         }
     }
+    
 }
 
 

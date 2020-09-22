@@ -48,13 +48,15 @@ struct TrincaBrain {
     }
     
     mutating func toggleCard(_ card: Card) {
+        print("Toggling card...")
+        
         // Limpa todas as cartas que não sao match
         cleanMismatchedCards()
         
         // Ignora quando a carta já foi matched
-        if let matched = card.isMatched, matched { return }
+        if let isMatched = card.isMatched, isMatched { return }
         
-        // Subistitui cards the foram feito set por novas do deck
+        // Substitui todas as cartas que sao match
         replaceMatchedCards()
         
         // Seleciona a carta
@@ -68,6 +70,13 @@ struct TrincaBrain {
         }
     }
     
+    private var mismatchedCards: Array<Card> {
+        tableCards.filter { card in
+            guard let isMatchedCard = card.isMatched else { return false }
+            return !isMatchedCard
+        }
+    }
+    
     private mutating func cleanMismatchedCards() {
         for mismatchedCard in mismatchedCards {
             if let index = tableCards.firstIndex(matching: mismatchedCard) {
@@ -76,12 +85,10 @@ struct TrincaBrain {
         }
     }
     
-    private var mismatchedCards: Array<Card> {
+    private var matchedCards: Array<Card> {
         tableCards.filter { card in
-            guard let isMatchedCard = card.isMatched else {
-                return false
-            }
-            return !isMatchedCard
+            guard let isMatchedCard = card.isMatched else { return false }
+            return isMatchedCard
         }
     }
     
@@ -98,16 +105,7 @@ struct TrincaBrain {
         }
     }
     
-    private var matchedCards: Array<Card> {
-        tableCards.filter { card in
-            guard let isMatchedCard = card.isMatched else {
-                return false
-            }
-            return isMatchedCard
-        }
-    }
-    
-    var selectedCards: Array<Card> {
+    private var selectedCards: Array<Card> {
         tableCards.filter { card in
             card.isSelected
         }
@@ -187,7 +185,12 @@ struct TrincaBrain {
         
     }
     
-    private var cards: Array<Card> = TrincaBrain.makeCards()
+    init() {
+        self.loadDeck()
+        self.initialDeal()
+    }
+    
+    private var cards: Array<Card> = TrincaBrain.makeDeck()
     
     private(set) var deckCards: Array<Card> = []
     private(set) var tableCards: Array<Card> = []
@@ -195,6 +198,10 @@ struct TrincaBrain {
     
     mutating func loadDeck() {
         deckCards = cards.shuffled()
+    }
+    
+    mutating func initialDeal() {
+        dealCards(count: 12)
     }
     
     mutating func dealThree() {
@@ -213,16 +220,7 @@ struct TrincaBrain {
         }
     }
     
-    init() {
-        self.loadDeck()
-        self.initialDeal()
-    }
-    
-    mutating func initialDeal() {
-        dealCards(count: 12)
-    }
-    
-    static func makeCards() -> Array<Card> {
+    static func makeDeck() -> Array<Card> {
         
         var result = Array<Card>()
         var id = 0
